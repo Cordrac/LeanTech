@@ -244,4 +244,49 @@ const About: React.FC = () => {
 
           <div className="max-w-4xl mx-auto mt-16 relative">
              {/* Central Line */}
-             
+             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
+
+             {/* Timeline Items */}
+             {[
+               { 
+                 year: '2020 - Aujourd\'hui', 
+                 role: 'Consultant Indépendant', 
+                 company: 'LeanTech Solutions', 
+                 desc: "Accompagnement de PME et grands groupes dans leur transformation digitale et l'optimisation de leurs processus industriels." 
+               },
+               { 
+                 year: '2017 - 2020', 
+                 role: 'Responsable Amélioration Continue', 
+                 company: 'Groupe Industriel International', 
+                 desc: "Pilotage de chantiers Kaizen, déploiement du Lean Manufacturing sur 3 sites de production." 
+               },
+               { 
+                 year: '2014 - 2017', 
+                 role: 'Ingénieur Méthodes & Process', 
+                 company: 'Industrie Pharmaceutique', 
+                 desc: "Optimisation des flux de production, qualification d'équipements et mise en place d'indicateurs de performance." 
+               }
+             ].map((item, index) => (
+               <div key={index} className={`flex flex-col md:flex-row gap-8 items-center mb-12 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                 <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                   <div className="text-primary font-bold text-xl mb-1">{item.year}</div>
+                   <h3 className="text-gray-900 font-bold text-lg">{item.role}</h3>
+                   <div className="text-gray-500 font-medium mb-2">{item.company}</div>
+                   <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+                 </div>
+                 
+                 <div className="relative z-10 w-8 h-8 rounded-full bg-white border-4 border-primary shadow-lg flex-shrink-0"></div>
+
+                 <div className="w-full md:w-5/12"></div>
+               </div>
+             ))}
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default About;
