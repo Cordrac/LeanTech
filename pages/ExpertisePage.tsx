@@ -1,24 +1,42 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { 
   BarChart2, Zap, Database, CheckCircle, 
   RefreshCw, Search, Layout, Smartphone, 
   Workflow, FileSpreadsheet, Code, 
   Layers, BrainCircuit, Share2, Shield, 
   Globe, Table, ArrowRight, User, Mail,
-  TrendingUp, Settings, Activity, Clock
+  TrendingUp, Settings, Activity, Clock, Lock
 } from 'lucide-react';
+
+const m365Apps = [
+  { name: "Excel", icon: "https://img.icons8.com/color/96/000000/microsoft-excel-2019--v1.png" },
+  { name: "Word", icon: "https://img.icons8.com/color/96/000000/microsoft-word-2019--v2.png" },
+  { name: "PowerPoint", icon: "https://img.icons8.com/color/96/000000/microsoft-powerpoint-2019--v1.png" },
+  { name: "Outlook", icon: "https://img.icons8.com/color/96/000000/microsoft-outlook-2019--v1.png" },
+  { name: "Teams", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Microsoft_Teams_af_icon.svg/144px-Microsoft_Teams_af_icon.svg.png" },
+  { name: "SharePoint", icon: "https://img.icons8.com/color/96/000000/microsoft-sharepoint-2019.png" },
+  { name: "OneDrive", icon: "https://img.icons8.com/color/96/000000/microsoft-onedrive-2019.png" },
+  { name: "OneNote", icon: "https://img.icons8.com/color/96/000000/microsoft-onenote-2019.png" },
+  { name: "Power BI", icon: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
+  { name: "Power Apps", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Microsoft_Power_Apps_2020.svg/144px-Microsoft_Power_Apps_2020.svg.png" },
+  { name: "Power Automate", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_Power_Automate.svg/144px-Microsoft_Power_Automate.svg.png" },
+  { name: "Planner", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Microsoft_Planner_2019.svg/144px-Microsoft_Planner_2019.svg.png" },
+  { name: "Forms", icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Microsoft_Forms_2019.svg/144px-Microsoft_Forms_2019.svg.png" },
+  { name: "Stream", icon: "https://img.icons8.com/color/96/000000/microsoft-stream-2019.png" },
+  { name: "Visio", icon: "https://img.icons8.com/color/96/000000/microsoft-visio-2019.png" },
+];
 
 const ExpertisePage: React.FC = () => {
   
   // Animation Variants
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const scaleIn = {
+  const scaleIn: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
   };
@@ -73,7 +91,7 @@ const ExpertisePage: React.FC = () => {
               Performance Opérationnelle
             </h2>
             <p className="text-slate-400 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
-              Le digital n'est qu'un amplificateur. Avant d'automatiser, nous simplifions et standardisons vos processus physiques pour garantir le ROI.
+              Le digital n'est qu'un amplificateur. Avant d'automatiser, nous simplifions et standardisons vos processus physiques.
             </p>
           </motion.div>
 
@@ -518,7 +536,7 @@ const ExpertisePage: React.FC = () => {
                L'intelligence artificielle générative arrive dans vos processus. Je vous aide à préparer vos données et à identifier les cas d'usage où l'IA apportera une valeur immédiate.
              </p>
              <div className="flex justify-center gap-4">
-                <span className="px-6 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-300 text-sm font-bold">Génération de Code</span>
+                <span className="px-6 py-2 rounded-full border border-pink-500/30 bg-pink-500/10 text-pink-300 text-sm font-bold">Agent IA perso</span>
                 <span className="px-6 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-bold">Analyse de Données</span>
                 <span className="px-6 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-sm font-bold">Automatisation IA</span>
              </div>
@@ -639,9 +657,9 @@ const ExpertisePage: React.FC = () => {
               <div className="w-14 h-14 bg-yellow-900/20 rounded-xl flex items-center justify-center text-yellow-400 mb-6 group-hover:scale-110 transition-transform border border-yellow-400/20">
                  <Code size={28} />
               </div>
-              <h4 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Python for Data</h4>
+              <h4 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">Python</h4>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Scripts Pandas pour la manipulation de données complexe ou volumes importants. Analyses statistiques avancées impossibles sur Excel.
+                Automatisation via Python : traitement de fichiers, connexion APIs, scripts personnalisés. Pour les tâches impossibles à faire autrement.
               </p>
               <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
                  <div className="w-0 group-hover:w-full h-full bg-yellow-400 transition-all duration-500 ease-out"></div>
@@ -668,24 +686,24 @@ const ExpertisePage: React.FC = () => {
                   Tout est intégré, <br/>rien de plus à payer.
                </h2>
                <p className="text-lg text-cyan-100 leading-relaxed mb-8">
-                  Ma force est de maximiser l'usage de votre licence <strong>Microsoft 365</strong> existante. Pas de coûts cachés. Je structure votre <strong>SharePoint Online</strong> pour en faire un véritable Intranet collaboratif.
+                  Vous avez déjà Microsoft 365 ? Exploitez-le à 100% ! Je structure vos solutions (SharePoint, Power Apps, Power BI) sans coûts additionnels. Pas de licences Premium nécessaires, pas de surprises.
                </p>
                <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-3 text-white">
                      <div className="bg-white/10 p-2 rounded-lg"><Shield size={18}/></div>
-                     <span>Sécurité Active Directory</span>
+                     <span>Sécurisé (Active Directory)</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white">
+                     <div className="bg-white/10 p-2 rounded-lg"><User size={18}/></div>
+                     <span>Contrôle total des accès</span>
                   </div>
                   <div className="flex items-center gap-3 text-white">
                      <div className="bg-white/10 p-2 rounded-lg"><Layers size={18}/></div>
                      <span>Centralisation Data</span>
                   </div>
                   <div className="flex items-center gap-3 text-white">
-                     <div className="bg-white/10 p-2 rounded-lg"><User size={18}/></div>
-                     <span>Gestion des accès</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-white">
                      <div className="bg-white/10 p-2 rounded-lg"><Share2 size={18}/></div>
-                     <span>Collaboration Teams</span>
+                     <span>Espace Collaboratif</span>
                   </div>
                </div>
             </div>
@@ -725,6 +743,30 @@ const ExpertisePage: React.FC = () => {
             </div>
          </div>
       </div>
+
+      {/* 7. M365 APPS MARQUEE */}
+      <div className="py-12 bg-[#0B0F19] overflow-hidden border-t border-white/5 relative">
+         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0B0F19] to-transparent z-10 pointer-events-none"></div>
+         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0B0F19] to-transparent z-10 pointer-events-none"></div>
+         
+         <div className="flex overflow-hidden relative">
+            <motion.div 
+               className="flex items-center"
+               animate={{ x: "-50%" }}
+               transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+               style={{ width: "fit-content" }}
+            >
+               {/* Double the list for seamless loop */}
+               {[...m365Apps, ...m365Apps].map((app, index) => (
+                  <div key={index} className="flex flex-col items-center gap-3 min-w-[80px] mr-16 group cursor-default">
+                     <img src={app.icon} alt={app.name} className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300" />
+                     <span className="text-xs text-gray-400 font-medium group-hover:text-white transition-colors">{app.name}</span>
+                  </div>
+               ))}
+            </motion.div>
+         </div>
+      </div>
+
     </div>
   );
 };

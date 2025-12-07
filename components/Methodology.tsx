@@ -7,7 +7,7 @@ const steps = [
   { 
     id: '01',
     title: 'Analyse', 
-    description: "Audit de l’existant, compréhension des besoins métiers et définition des objectifs ROI." 
+    description: "Audit de l’existant, compréhension des besoins métiers et définition des objectifs." 
   },
   { 
     id: '02',
@@ -17,7 +17,7 @@ const steps = [
   { 
     id: '03',
     title: 'Développement', 
-    description: "Construction de la solution (Agile), tests unitaires et recettes utilisateurs." 
+    description: "Construction de la solution (méthode Agile), tests et validation avec vos équipes." 
   },
   { 
     id: '04',

@@ -18,9 +18,10 @@ export interface Project {
   id: string;
   title: string;
   category: string;
-  description: string;
+  description: string | React.ReactNode;
   imageUrl: string;
   tags: string[];
+  fallbackUrl?: string;
 }
 
 export interface Testimonial {

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, BarChart2 } from 'lucide-react';
+import { Menu, X, BarChart2, Lock } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -57,20 +57,38 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              to={link.path}
-              onClick={() => window.scrollTo(0, 0)}
-              className={`text-sm font-semibold tracking-wide transition-all hover:-translate-y-0.5 ${
-                !isTransparent 
-                  ? 'text-gray-600 hover:text-primary' 
-                  : 'text-white/90 hover:text-white drop-shadow-sm'
-              } ${location.pathname === link.path ? (!isTransparent ? 'text-primary' : 'text-white border-b-2 border-white') : ''}`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+             const isLocked = link.path === '/portfolio';
+             
+             if (isLocked) {
+                return (
+                  <div key={link.name} className="relative group cursor-not-allowed">
+                     <span className={`text-sm font-semibold tracking-wide flex items-center gap-1.5 ${!isTransparent ? 'text-gray-400' : 'text-white/60'}`}>
+                        {link.name} <Lock size={12} />
+                     </span>
+                     {/* Tooltip */}
+                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                       En cours de création
+                     </div>
+                  </div>
+                );
+             }
+
+             return (
+                <Link 
+                  key={link.name} 
+                  to={link.path}
+                  onClick={() => window.scrollTo(0, 0)}
+                  className={`text-sm font-semibold tracking-wide transition-all hover:-translate-y-0.5 ${
+                    !isTransparent 
+                      ? 'text-gray-600 hover:text-primary' 
+                      : 'text-white/90 hover:text-white drop-shadow-sm'
+                  } ${location.pathname === link.path ? (!isTransparent ? 'text-primary' : 'text-white border-b-2 border-white') : ''}`}
+                >
+                  {link.name}
+                </Link>
+             );
+          })}
           <Link
             to="/contact"
             onClick={() => window.scrollTo(0, 0)}
@@ -107,16 +125,28 @@ const Navbar: React.FC = () => {
             className="md:hidden bg-white border-b border-gray-100 shadow-xl overflow-hidden absolute w-full top-full left-0"
           >
             <div className="flex flex-col px-6 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.name} 
-                  to={link.path}
-                  className={`font-bold text-lg hover:text-primary transition-colors ${location.pathname === link.path ? 'text-secondary' : 'text-gray-700'}`}
-                  onClick={handleLinkClick}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                 const isLocked = link.path === '/portfolio';
+                 
+                 if (isLocked) {
+                    return (
+                        <div key={link.name} className="flex items-center gap-2 text-gray-400 font-bold text-lg">
+                           {link.name} <Lock size={16} /> <span className="text-xs font-normal border border-gray-200 px-2 py-0.5 rounded-full bg-gray-50">Bientôt</span>
+                        </div>
+                    );
+                 }
+
+                 return (
+                    <Link 
+                      key={link.name} 
+                      to={link.path}
+                      className={`font-bold text-lg hover:text-primary transition-colors ${location.pathname === link.path ? 'text-secondary' : 'text-gray-700'}`}
+                      onClick={handleLinkClick}
+                    >
+                      {link.name}
+                    </Link>
+                 );
+              })}
               <div className="pt-4 border-t border-gray-100">
                 <Link 
                   to="/contact"

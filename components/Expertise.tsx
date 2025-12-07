@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import { Skill } from '../types';
 
@@ -42,7 +42,7 @@ const Expertise: React.FC = () => {
   return (
     <section id="expertise" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           
           <div className="md:w-1/2">
             <SectionHeading 
@@ -50,19 +50,23 @@ const Expertise: React.FC = () => {
               subtitle="Une double compétence rare alliant expertise terrain et maîtrise technologique."
               centered={false}
             />
-            <p className="text-gray-600 mb-8 leading-relaxed">
-              Mon profil d'ingénieur spécialisé en amélioration continue me permet de comprendre vos problématiques métier (production, qualité, logistique) et d'y répondre avec les outils digitaux les plus adaptés. Je ne suis pas seulement un développeur, je suis un partenaire de votre excellence opérationnelle.
+            
+            <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+              Mon profil d'ingénieur en amélioration continue me permet de comprendre vos problématiques métier (production, qualité, logistique) et d'y répondre avec les outils digitaux les plus adaptés.
             </p>
-            <div className="grid grid-cols-2 gap-4">
-               <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-primary">
-                  <span className="block text-2xl font-bold text-primary mb-1">70%</span>
-                  <span className="text-sm text-gray-600">Gain de temps sur tâches admin</span>
-               </div>
-               <div className="bg-orange-50 p-4 rounded-lg border-l-4 border-secondary">
-                  <span className="block text-2xl font-bold text-secondary mb-1">ROI</span>
-                  <span className="text-sm text-gray-600">Rapide et mesurable</span>
-               </div>
-            </div>
+            
+            {/* Nouveau Design Citation : Plus subtil et intégré */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative pl-6 border-l-4 border-secondary/80 py-2 my-8 bg-white/50 rounded-r-xl"
+            >
+               <Quote className="absolute -top-2 left-4 text-gray-200" size={40} />
+               <p className="relative z-10 text-xl font-heading font-medium text-gray-800 italic leading-relaxed">
+                 "Je ne suis pas seulement un développeur, je suis un partenaire de votre excellence opérationnelle."
+               </p>
+            </motion.div>
           </div>
 
           <div className="md:w-1/2 w-full grid gap-4">

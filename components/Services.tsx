@@ -8,23 +8,23 @@ const servicesList: Service[] = [
   {
     id: 'lean',
     title: 'Amélioration Continue & Lean',
-    description: "Optimisation de vos processus industriels pour réduire les gaspillages et maximiser la valeur ajoutée.",
+    description: "Optimisation de vos processus pour réduire les gaspillages et maximiser la valeur ajoutée.",
     icon: Settings,
     features: ['Diagnostic VSM & 5S', 'Pilotage de la performance (TRS)', 'Projets Kaizen & Six Sigma', 'Standardisation des processus']
   },
   {
     id: 'bi',
     title: 'Business Intelligence & Data',
-    description: "Transformez vos données brutes en tableaux de bord interactifs pour un pilotage éclairé en temps réel.",
+    description: "Transformez vos données brutes en tableaux de bord interactifs pour un pilotage éclairé.",
     icon: BarChart,
-    features: ['Dashboards Power BI sur mesure', 'Visuels avancés (DENEB)', 'Cockpits de production', 'Formation utilisateurs']
+    features: ['Dashboards Power BI sur mesure', 'Tableau de bord intéractif', 'Data Ingestion', 'Formation utilisateurs']
   },
   {
     id: 'automation',
     title: 'Automatisation & Low-Code',
     description: "Digitalisez vos formulaires papier et automatisez vos tâches répétitives pour gagner du temps.",
     icon: Cpu,
-    features: ['Power Apps Métier', 'Workflows Power Automate', 'Automatisation SAP & Excel', 'Digitalisation Zéro Papier']
+    features: ['Application métier', 'Automatisation intégrée', 'Automatisation SAP & Excel', 'Digitalisation Zéro Papier']
   }
 ];
 

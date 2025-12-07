@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { 
   BarChart2, RefreshCw, Cpu, CheckCircle, 
   ArrowRight, TrendingUp, Layers, Zap 
@@ -41,17 +42,37 @@ const ServicesPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-20">
+    <div className="bg-white min-h-screen">
       
-      {/* 1. HERO SECTION EPURE */}
-      <section className="bg-white py-16 px-6 text-center">
-        <div className="container mx-auto max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-heading font-bold text-gray-900 mb-6">
-            Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Une expertise hybride unique combinant l'excellence opérationnelle et la puissance des solutions Microsoft.
-          </p>
+      {/* 1. HERO SECTION DARK MODE (Redesigned) */}
+      <section className="relative pt-40 pb-28 bg-[#0B0F19] text-white overflow-hidden">
+        {/* Background Base */}
+        <div className="absolute inset-0 bg-[#0B0F19]"></div>
+        
+        {/* Tech Grid Pattern with Radial Mask */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+
+        {/* Ambient Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-5xl mx-auto"
+          >
+            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8 tracking-tight flex flex-col items-center justify-center gap-2 leading-none">
+              <span className="text-white drop-shadow-sm">Services</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 pb-2">
+                 & Offres
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed font-light mt-8 border-t border-white/5 pt-8">
+              Une expertise hybride unique combinant l'excellence opérationnelle et la puissance des solutions Microsoft.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -112,7 +133,7 @@ const ServicesPage: React.FC = () => {
                </h2>
                
                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                 L'optimisation ne s'improvise pas. J'interviens au cœur de vos opérations pour identifier les gaspillages (Muda), fluidifier les flux et instaurer une culture d'excellence durable.
+                 Diagnostic de vos processus, élimination des gaspillages (Muda) et mise en place d'outils Lean adaptés à votre réalité terrain. Objectif : gains rapides et culture d'excellence durable.
                </p>
                
                <div className="grid sm:grid-cols-2 gap-y-4 gap-x-6 mb-10">
@@ -245,7 +266,7 @@ const ServicesPage: React.FC = () => {
                </h2>
                
                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                 Remplacez vos formulaires papier et tâches manuelles répétitives par des applications modernes et des flux automatisés. Gagnez en fiabilité et libérez du temps pour ce qui compte vraiment.
+                 Éliminez les tâches répétitives et les formulaires papier. Je développe des applications mobiles (Power Apps) et des flux automatisés (Power Automate, VBA, RPA) qui vous font gagner des heures chaque semaine.
                </p>
                
                <div className="grid sm:grid-cols-2 gap-y-4 gap-x-6 mb-10">
@@ -282,8 +303,8 @@ const ServicesPage: React.FC = () => {
               <div className="relative group">
                 <div className="absolute inset-0 bg-indigo-600/10 transform translate-x-3 translate-y-3 rounded-2xl transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop&fm=webp" 
-                  alt="Application Power Apps sur tablette" 
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&fm=webp" 
+                  alt="Développement et Automatisation" 
                   loading="lazy"
                   width="800"
                   height="600"

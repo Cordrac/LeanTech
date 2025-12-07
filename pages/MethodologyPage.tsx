@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { 
   Zap, FolderKanban, ShieldCheck, Lock, 
   FileCheck, Target, BarChart3, Clock, 
@@ -16,7 +16,7 @@ const MethodologyPage: React.FC = () => {
   // La solution est de laisser une valeur infinitésimale (0.01) pour forcer le navigateur
   // à maintenir le rendu en mode "Composite Layer".
   
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (customDelay: number = 0) => ({ 
       opacity: 1, 
@@ -29,7 +29,7 @@ const MethodologyPage: React.FC = () => {
     })
   };
 
-  const fadeInLeft = {
+  const fadeInLeft: Variants = {
     hidden: { opacity: 0, x: -30 },
     visible: { 
       opacity: 1, 
@@ -38,7 +38,7 @@ const MethodologyPage: React.FC = () => {
     }
   };
 
-  const fadeInRight = {
+  const fadeInRight: Variants = {
     hidden: { opacity: 0, x: 30 },
     visible: { 
       opacity: 1, 
@@ -47,7 +47,7 @@ const MethodologyPage: React.FC = () => {
     }
   };
 
-  const scaleIn = {
+  const scaleIn: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: (customDelay: number = 0) => ({ 
       opacity: 1, 
@@ -435,7 +435,7 @@ const MethodologyPage: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">Garantie 3 Mois</h3>
                     <p className="text-gray-400 leading-relaxed">
-                       Sérénité totale post-livraison. Je m'engage à corriger gratuitement et rapidement tout bug ou dysfonctionnement pendant les 3 mois suivant la mise en production.
+                       Je reste à vos côtés après le déploiement. Tout bug ou dysfonctionnement est corrigé gratuitement pendant 3 mois. Aucune mauvaise surprise.
                     </p>
                  </div>
                </motion.div>
@@ -459,7 +459,7 @@ const MethodologyPage: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">Sécurité & Data</h3>
                     <p className="text-gray-400 leading-relaxed">
-                       Vos données sont sacrées et ne sortent jamais de votre Tenant Microsoft. Je respecte scrupuleusement vos règles RBAC et standards de confidentialité (NDA).
+                       Vos données restent chez vous, dans votre Tenant Microsoft 365. Je travaille dans le respect de vos règles de sécurité (RBAC, NDA, confidentialité)
                     </p>
                  </div>
                </motion.div>
@@ -483,7 +483,7 @@ const MethodologyPage: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Code Propriétaire</h3>
                     <p className="text-gray-400 leading-relaxed">
-                       Transparence totale. Pas de "Black Box" : vous êtes propriétaire à 100% du code source, des flux et des applications. Tout est documenté pour votre DSI.
+                       Propriété totale garantie. Le code, les flux, les apps : tout vous appartient. Documentation technique fournie. Zéro dépendance, autonomie maximale.
                     </p>
                  </div>
                </motion.div>

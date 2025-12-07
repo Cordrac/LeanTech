@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   return (
@@ -24,16 +25,6 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-flex items-center gap-2 bg-blue-900/50 border border-blue-500/30 text-blue-300 px-4 py-1.5 rounded-full text-sm font-medium mb-6 backdrop-blur-sm"
-            >
-              <TrendingUp size={16} />
-              <span>Expert en Performance Industrielle</span>
-            </motion.div>
-            
             <h1 className="text-4xl md:text-6xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-lg">
               Transformez vos données en <span className="text-secondary">décisions</span>, vos processus en <span className="text-primary">performance</span>.
             </h1>
@@ -48,19 +39,21 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a 
-                href="#contact"
+              <Link 
+                to="/contact"
+                onClick={() => window.scrollTo(0, 0)}
                 className="bg-secondary hover:bg-orange-600 text-white text-lg font-semibold px-8 py-4 rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-orange-500/20 hover:-translate-y-1"
               >
                 Discutons de votre projet
                 <ArrowRight size={20} />
-              </a>
-              <a 
-                href="#services"
+              </Link>
+              <Link 
+                to="/services"
+                onClick={() => window.scrollTo(0, 0)}
                 className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white text-lg font-medium px-8 py-4 rounded-lg transition-all flex items-center justify-center hover:-translate-y-1"
               >
                 Découvrir mes services
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
