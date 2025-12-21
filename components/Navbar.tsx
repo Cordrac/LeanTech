@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, BarChart2, Lock } from 'lucide-react';
+import { Menu, X, Lock } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,7 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Determine if we are on the home page for transparency logic
   const isHomePage = location.pathname === '/';
-  
-  // Navbar is transparent only at top of Home page
-  // On other pages, it should be white/glassy but visible
   const isTransparent = isHomePage && !scrolled;
 
   const navLinks = [
@@ -46,13 +43,8 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-6 flex justify-between items-center">
         
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 font-heading font-bold text-2xl group" onClick={handleLinkClick}>
-          <div className={`p-2 rounded-lg transition-colors ${!isTransparent ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
-            <BarChart2 size={24} className="group-hover:rotate-180 transition-transform duration-500" />
-          </div>
-          <span className={!isTransparent ? 'text-gray-900' : 'text-white drop-shadow-md'}>
-            Lean<span className={!isTransparent ? 'text-primary' : 'text-white'}>Tech</span>
-          </span>
+        <Link to="/" onClick={handleLinkClick}>
+          <Logo light={isTransparent} size={38} />
         </Link>
 
         {/* Desktop Menu */}
@@ -63,12 +55,11 @@ const Navbar: React.FC = () => {
              if (isLocked) {
                 return (
                   <div key={link.name} className="relative group cursor-not-allowed">
-                     <span className={`text-sm font-semibold tracking-wide flex items-center gap-1.5 ${!isTransparent ? 'text-gray-400' : 'text-white/60'}`}>
+                     <span className={`text-sm font-bold tracking-wide flex items-center gap-1.5 ${!isTransparent ? 'text-gray-400' : 'text-white/60'}`}>
                         {link.name} <Lock size={12} />
                      </span>
-                     {/* Tooltip */}
-                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-gray-800 text-white text-xs px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                       En cours de création
+                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max bg-gray-800 text-white text-[10px] px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none uppercase font-black tracking-widest">
+                       En cours
                      </div>
                   </div>
                 );
@@ -79,9 +70,9 @@ const Navbar: React.FC = () => {
                   key={link.name} 
                   to={link.path}
                   onClick={() => window.scrollTo(0, 0)}
-                  className={`text-sm font-semibold tracking-wide transition-all hover:-translate-y-0.5 ${
+                  className={`text-sm font-bold tracking-wide transition-all hover:scale-105 ${
                     !isTransparent 
-                      ? 'text-gray-600 hover:text-primary' 
+                      ? 'text-slate-600 hover:text-primary' 
                       : 'text-white/90 hover:text-white drop-shadow-sm'
                   } ${location.pathname === link.path ? (!isTransparent ? 'text-primary' : 'text-white border-b-2 border-white') : ''}`}
                 >
@@ -92,10 +83,10 @@ const Navbar: React.FC = () => {
           <Link
             to="/contact"
             onClick={() => window.scrollTo(0, 0)}
-            className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-lg ${
+            className={`px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all transform hover:scale-105 shadow-xl ${
                !isTransparent
-               ? 'bg-secondary hover:bg-orange-600 text-white'
-               : 'bg-white text-primary hover:bg-gray-100'
+               ? 'bg-primary hover:bg-blue-700 text-white shadow-primary/20'
+               : 'bg-white text-primary hover:bg-gray-100 shadow-white/10'
             }`}
           >
             Me Contacter
@@ -119,38 +110,35 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 shadow-xl overflow-hidden absolute w-full top-full left-0"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            className="md:hidden bg-white fixed inset-0 z-50 overflow-hidden h-screen"
           >
-            <div className="flex flex-col px-6 py-6 space-y-4">
-              {navLinks.map((link) => {
-                 const isLocked = link.path === '/portfolio';
-                 
-                 if (isLocked) {
-                    return (
-                        <div key={link.name} className="flex items-center gap-2 text-gray-400 font-bold text-lg">
-                           {link.name} <Lock size={16} /> <span className="text-xs font-normal border border-gray-200 px-2 py-0.5 rounded-full bg-gray-50">Bientôt</span>
-                        </div>
-                    );
-                 }
+            <div className="flex flex-col h-full">
+              <div className="flex justify-between items-center p-6 border-b border-gray-100">
+                <Logo size={32} />
+                <button onClick={() => setIsOpen(false)}><X size={32} className="text-slate-900" /></button>
+              </div>
+              <div className="flex flex-col px-6 py-12 space-y-8">
+                {navLinks.map((link) => {
+                   const isLocked = link.path === '/portfolio';
+                   if (isLocked) return null;
 
-                 return (
-                    <Link 
-                      key={link.name} 
-                      to={link.path}
-                      className={`font-bold text-lg hover:text-primary transition-colors ${location.pathname === link.path ? 'text-secondary' : 'text-gray-700'}`}
-                      onClick={handleLinkClick}
-                    >
-                      {link.name}
-                    </Link>
-                 );
-              })}
-              <div className="pt-4 border-t border-gray-100">
+                   return (
+                      <Link 
+                        key={link.name} 
+                        to={link.path}
+                        className={`font-black text-3xl uppercase tracking-tighter hover:text-primary transition-colors ${location.pathname === link.path ? 'text-primary' : 'text-slate-900'}`}
+                        onClick={handleLinkClick}
+                      >
+                        {link.name}
+                      </Link>
+                   );
+                })}
                 <Link 
                   to="/contact"
-                  className="block w-full bg-primary text-white text-center py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors shadow-md"
+                  className="w-full bg-slate-900 text-white text-center py-5 rounded-2xl font-black uppercase tracking-widest text-lg shadow-2xl"
                   onClick={handleLinkClick}
                 >
                   Me Contacter

@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { 
   MapPin, GraduationCap, Briefcase, 
   Users, Factory, Zap, Database, Linkedin, 
-  CheckCircle2, ArrowRight,
-  Cpu, PenTool, Rocket, Microscope, Laptop
+  ArrowRight,
+  Laptop,
+  Award,
+  Rocket, Microscope, Coffee
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
@@ -14,16 +16,8 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ compact = false }) => {
-  
-  // Helper pour convertir la classe bg- en text- pour les titres (Vers des teintes plus vives)
-  const getTextColor = (bgClass: string) => {
-    if (bgClass.includes('emerald')) return 'text-emerald-600';
-    if (bgClass.includes('blue')) return 'text-blue-600';
-    if (bgClass.includes('cyan')) return 'text-cyan-600';
-    if (bgClass.includes('indigo')) return 'text-indigo-600';
-    if (bgClass.includes('purple')) return 'text-purple-600';
-    return 'text-gray-900';
-  };
+  const linkedinUrl = "https://www.linkedin.com/in/fran%C3%A7ois-mastroeni-153781171?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BO%2Fo6Kd2rSP2GbBiXdVBmfA%3D%3D";
+  const email = "francois.mastroeni@gmail.com";
 
   return (
     <div className="bg-white overflow-hidden font-sans text-slate-900">
@@ -51,9 +45,9 @@ const About: React.FC<AboutProps> = ({ compact = false }) => {
               className="w-full lg:w-5/12 relative max-w-md lg:max-w-none mx-auto lg:order-2"
             >
               <div className="relative z-10 rounded-3xl p-3 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-sm shadow-2xl">
-                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4]">
+                 <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-slate-800">
                     <img 
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" 
+                      src="https://media.licdn.com/dms/image/v2/D4E03AQFL239TnU1-dw/profile-displayphoto-crop_800_800/B4EZsXg4q3KkAI-/0/1765626057491?e=1767225600&v=beta&t=2Zi1DQk_dL4VpCeQnMFmR8vCiVrC6LWE324GqM9k_3I"
                       alt="François Mastroeni" 
                       className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                     />
@@ -111,13 +105,13 @@ const About: React.FC<AboutProps> = ({ compact = false }) => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="#contact" 
+                  href={`mailto:${email}`}
                   className="px-8 py-3.5 bg-white text-slate-900 font-bold rounded-xl transition-all hover:bg-gray-100 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                 >
                   Me contacter
                 </a>
                 <a 
-                  href="https://fr.linkedin.com/in/fran%C3%A7ois-mastroeni-153781171" 
+                  href={linkedinUrl}
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="px-8 py-3.5 bg-slate-800 text-white font-medium rounded-xl transition-all hover:bg-slate-700 border border-slate-700 flex items-center justify-center gap-2 hover:-translate-y-0.5"
@@ -272,7 +266,7 @@ const About: React.FC<AboutProps> = ({ compact = false }) => {
             </div>
           </section>
 
-          {/* 4. TIMELINE PARCOURS : Titles Colored, No Dates */}
+          {/* 4. TIMELINE PARCOURS */}
           <section className="py-24 bg-gray-50 overflow-hidden">
             <div className="container mx-auto px-6">
               <SectionHeading 
@@ -395,99 +389,81 @@ const About: React.FC<AboutProps> = ({ compact = false }) => {
             </div>
           </section>
 
-          {/* 5. BENTO GRID : FORMATION */}
-          <section className="py-24 bg-white border-t border-gray-100">
+          {/* 5. FORMATION & DIPLOMES (Compact & Visual) */}
+          <section className="py-20 bg-white border-t border-gray-100">
             <div className="container mx-auto px-6 max-w-6xl">
-              <div className="text-center mb-16">
-                 <h2 className="text-3xl font-heading font-bold mb-4">Formation & Diplômes</h2>
-                 <p className="text-gray-500">Un socle académique solide renforcé par la pratique.</p>
+              <div className="text-center mb-12">
+                 <h2 className="text-3xl font-heading font-bold mb-4">Formation & Certifications</h2>
+                 <p className="text-gray-500">Un parcours solide et une expertise validée.</p>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[auto]">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                   
-                  {/* Card 1: Ingénieur Production */}
+                  {/* Diplome 1 */}
                   <motion.div 
-                    whileHover={{ y: -5 }}
-                    className="md:col-span-2 bg-[#0F172A] text-white rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-xl min-h-[220px]"
+                     whileHover={{ y: -5 }}
+                     className="bg-slate-50 rounded-2xl p-6 text-center hover:bg-white hover:shadow-lg transition-all border border-slate-100"
                   >
-                    <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <GraduationCap size={120} />
-                    </div>
-                    <div className="relative z-10">
-                        <div className="bg-white/10 w-12 h-12 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
-                            <Factory size={24} />
-                        </div>
-                        <h3 className="text-2xl font-bold">Ingénieur Production Industrielle</h3>
-                        <p className="text-slate-400 mt-2 max-w-md">
-                           Formation d'excellence en Génie Industriel. Maîtrise des systèmes de production, de la mécanique et de l'organisation industrielle.
-                        </p>
-                    </div>
+                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-slate-700 shadow-sm mx-auto mb-4 border border-slate-100">
+                         <GraduationCap size={24} />
+                     </div>
+                     <h3 className="font-bold text-slate-900 mb-1 text-sm md:text-base">Ingénieur Génie Industriel</h3>
+                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Master of Engineering</p>
                   </motion.div>
 
-                  {/* Card 2: Supply Chain */}
+                  {/* Diplome 2 */}
                   <motion.div 
-                    whileHover={{ y: -5 }}
-                    className="bg-blue-50 border border-blue-100 text-slate-900 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden"
+                     whileHover={{ y: -5 }}
+                     className="bg-slate-50 rounded-2xl p-6 text-center hover:bg-white hover:shadow-lg transition-all border border-slate-100"
                   >
-                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm mb-4">
-                        <Rocket size={24} />
+                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm mx-auto mb-4 border border-blue-50">
+                         <Rocket size={24} />
                      </div>
-                     <h3 className="text-xl font-bold leading-tight">Management Supply Chain</h3>
-                     <p className="text-slate-600 text-sm mt-2">
-                        Vision globale de la chaîne logistique, des approvisionnements à la distribution.
-                     </p>
+                     <h3 className="font-bold text-slate-900 mb-1 text-sm md:text-base">Management Supply Chain</h3>
+                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Spécialisation</p>
                   </motion.div>
 
-                  {/* Card 3: Lean & Qualité */}
+                  {/* Diplome 3 */}
                   <motion.div 
-                    whileHover={{ y: -5 }}
-                    className="bg-emerald-50 border border-emerald-100 text-slate-900 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden"
+                     whileHover={{ y: -5 }}
+                     className="bg-slate-50 rounded-2xl p-6 text-center hover:bg-white hover:shadow-lg transition-all border border-slate-100"
                   >
-                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mb-4">
-                        <Microscope size={24} />
+                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm mx-auto mb-4 border border-emerald-50">
+                         <Microscope size={24} />
                      </div>
-                     <h3 className="text-xl font-bold leading-tight">Lean Management & Qualité</h3>
-                     <p className="text-slate-600 text-sm mt-2">
-                        Spécialisation en amélioration continue, Six Sigma et systèmes de management de la qualité.
-                     </p>
+                     <h3 className="font-bold text-slate-900 mb-1 text-sm md:text-base">Lean & Qualité</h3>
+                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Expertise</p>
                   </motion.div>
 
-                  {/* Card 4: Power BI Editeur */}
+                  {/* Certification */}
                   <motion.div 
-                    whileHover={{ y: -5 }}
-                    className="md:col-span-2 bg-[#FFD700] text-slate-900 rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden shadow-lg border border-yellow-400"
+                     whileHover={{ scale: 1.02 }}
+                     className="bg-[#0F172A] rounded-2xl p-6 text-center text-white shadow-xl relative overflow-hidden group border border-slate-800"
                   >
-                     <div className="absolute -right-10 -bottom-10 opacity-20">
-                        <PenTool size={180} />
+                     <div className="absolute top-0 right-0 p-8 bg-blue-500/20 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                     <div className="relative z-10">
+                          <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-yellow-400 mx-auto mb-4 backdrop-blur-sm">
+                             <Award size={24} />
+                         </div>
+                         <h3 className="font-bold mb-1 text-sm md:text-base">Microsoft Certified</h3>
+                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Data Analyst Associate</p>
                      </div>
-                     <div className="relative z-10 flex items-center gap-6">
-                        <div className="bg-white/30 p-4 rounded-2xl">
-                           <PenTool size={32} className="text-slate-900" />
-                        </div>
-                        <div>
-                            <h3 className="text-xl font-bold leading-tight">Power BI Éditeur</h3>
-                            <p className="text-slate-800/80 font-medium text-sm mt-1">Création de Visuels Avancés & UX Design</p>
-                            <p className="text-slate-900 text-sm mt-2 max-w-lg">
-                               Je ne me contente pas des standards. Je crée des visuels sur-mesure pour raconter l'histoire de vos données avec clarté et impact.
-                            </p>
-                        </div>
-                     </div>
+                  </motion.div>
+
+                  {/* Fun Fact */}
+                  <motion.div 
+                     whileHover={{ rotate: 2 }}
+                     className="bg-amber-50 rounded-2xl p-6 text-center border border-amber-100 flex flex-col justify-center items-center cursor-default hover:bg-amber-100/50 transition-colors"
+                  >
+                       <div className="flex items-center gap-2 mb-2">
+                          <Coffee size={24} className="text-amber-700" />
+                          <span className="text-3xl font-black text-amber-600">1254</span>
+                       </div>
+                       <p className="text-xs font-bold text-amber-800 uppercase tracking-wide">Cafés Bus</p>
+                       <p className="text-[10px] text-amber-600 mt-1 italic opacity-75">(Estimation basse)</p>
                   </motion.div>
 
               </div>
-            </div>
-          </section>
-
-          {/* 6. CTA FINAL */}
-          <section className="bg-slate-900 text-white py-20 border-t border-slate-800">
-            <div className="container mx-auto px-6 text-center">
-                <h2 className="text-3xl font-heading font-bold mb-6">Prêt à collaborer ?</h2>
-                <p className="text-slate-400 mb-10 max-w-lg mx-auto">
-                   Que ce soit pour une mission ponctuelle ou un accompagnement long terme, je m'adapte à votre contexte.
-                </p>
-                <a href="#contact" className="inline-flex items-center gap-3 bg-primary hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-primary/50 hover:-translate-y-1">
-                    Réserver un appel découverte <ArrowRight size={20} />
-                </a>
             </div>
           </section>
         </>

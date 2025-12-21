@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -25,8 +26,9 @@ const ProjectImage = ({ src, alt, fallbackSrc }: { src: string, alt: string, fal
           src={imgSrc} 
           alt={alt} 
           onError={() => {
-            // Si l'image locale échoue, on passe au fallback Unsplash
+            // Si l'image locale (/assets/...) échoue, on bascule sur l'image Unsplash
             if (imgSrc !== fallbackSrc) {
+               console.log(`Image locale introuvable: ${imgSrc}, bascule sur fallback.`);
                setImgSrc(fallbackSrc);
             } else {
                setHasError(true);
@@ -63,20 +65,10 @@ const getCategoryColor = (cat: string) => {
   }
 };
 
-const getCategoryIcon = (cat: string) => {
-  switch (cat) {
-    case 'Power BI': return <BarChart2 size={16} />;
-    case 'Power Apps': return <Smartphone size={16} />;
-    case 'Power Automate': return <Zap size={16} />;
-    case 'SAP/VBA': return <Database size={16} />;
-    case 'Lean': return <RefreshCw size={16} />;
-    case 'Lean + Digital': return <Layers size={16} />;
-    default: return <Activity size={16} />;
-  }
-};
-
 // --- Projects Data ---
-// Note: We use local assets, but define fallback URLs from Unsplash in case local files miss.
+// IMPORTANT : Pour utiliser vos images, déposez-les dans public/assets/ et nommez-les comme ci-dessous.
+// Si le fichier n'existe pas, l'application chargera automatiquement l'image "fallbackUrl" (Unsplash).
+
 const projects: Project[] = [
   {
     id: '1',
@@ -88,8 +80,9 @@ const projects: Project[] = [
         <span className="font-bold text-emerald-600">+5% de TRS moyen</span>.
       </span>
     ),
+    // Ciblez votre fichier local ici :
     imageUrl: '/assets/cockpit.png', 
-    // Fallback URL if local file fails (High quality dashboard image)
+    // Image de secours si votre fichier n'est pas trouvé :
     fallbackUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
     tags: ['Power BI', 'DAX', 'SQL']
   },
@@ -103,8 +96,7 @@ const projects: Project[] = [
         <span className="font-bold text-emerald-600">Réduction de 50% du temps de gestion</span>.
       </span>
     ),
-    imageUrl: '/assets/carte-t.png',
-    // Fallback URL (Kanban board / sticky notes concept)
+    imageUrl: '/assets/kaizen-app.png',
     fallbackUrl: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop',
     tags: ['Power Apps', 'SharePoint', 'Automation']
   },
@@ -118,7 +110,7 @@ const projects: Project[] = [
         <span className="font-bold text-emerald-600">Gain de 1h30 par jour</span>.
       </span>
     ),
-    imageUrl: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=800&auto=format&fit=crop',
+    imageUrl: '/assets/planning.png',
     fallbackUrl: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=800&auto=format&fit=crop',
     tags: ['Power Automate', 'VBA', 'SAP Script']
   }
@@ -141,7 +133,8 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 flex flex-col"
+              // L'ajout de 'relative' ici est CRUCIAL pour que le badge (absolute) reste dans la carte
+              className="relative group bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 flex flex-col"
             >
               {/* Image with Robust Fallback */}
               <ProjectImage 
@@ -150,7 +143,7 @@ const Portfolio: React.FC = () => {
                  fallbackSrc={project.fallbackUrl || project.imageUrl} 
               />
               
-              {/* Category Badge */}
+              {/* Category Badge - Positionné en absolute par rapport au parent 'relative' */}
               <div className="absolute top-4 right-4 z-20">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1 ${getCategoryColor(project.category)}`}>
                     {project.category}
