@@ -13,7 +13,7 @@ import {
 // --- Types ---
 
 type Category = 'Power BI' | 'Power Apps' | 'Power Automate' | 'SAP/VBA' | 'Lean' | 'Lean + Digital';
-type Sector = 'Pharmaceutique' | 'Agroalimentaire' | 'Industrie' | 'Logistique' | 'Commercial' | 'Multi-secteurs';
+type Sector = 'Pharmaceutaque' | 'Agroalimentaire' | 'Industrie' | 'Logistique' | 'Commercial' | 'Multi-secteurs';
 
 interface PortfolioProject {
   id: string;
